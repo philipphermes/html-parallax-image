@@ -58,22 +58,31 @@
     const centerElement = document.body; // You can replace this with any other HTML element
 
     function getMousePosition(event) {
-        const centerX = centerElement.clientWidth / 2
-        const centerY = centerElement.clientHeight / 2
+        let x, y = 0;
+        const centerX = centerElement.clientWidth / 2;
+        const centerY = centerElement.clientHeight / 2;
 
-        const mouseX = event.clientX - centerX
-        const mouseY = event.clientY - centerY
+        if (event.touches && event.touches.length > 0) {
+            const touch = event.touches[0];
+            x = touch.clientX - centerX;
+            y = touch.clientY - centerY;
+        }
+        else {
+            x = event.clientX - centerX
+            y = event.clientY - centerY
+        }
 
         let multiplier = 0.0001
 
         for (let i = 8; i >= 0; i--) {
-            document.getElementById('parallax_' + i).style.transform = `translate(${mouseX * multiplier}px, ${mouseY * multiplier}px)`
+            document.getElementById('parallax_' + i).style.transform = `translate(${x * multiplier}px, ${y * multiplier}px)`
 
             multiplier *= 2
         }
     }
 
     document.addEventListener('mousemove', getMousePosition);
+    document.addEventListener('touchmove', getMousePosition);
 </script>
 </body>
 </html>
