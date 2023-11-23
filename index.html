@@ -18,22 +18,21 @@
         }
 
         #parallax {
-            height: 100vh;
+            height: 110vh;
             width: 100vw;
             overflow: hidden;
             display: grid;
             grid-template-areas: "stack";
-            justify-content: center;
-            align-items: center;
         }
 
         #parallax > img {
             position: relative;
             grid-area: stack;
-            aspect-ratio: 768 / 227;;
+            object-fit: cover;
             object-position: center;
             height: 125%;
-            left: calc(125% / -2.27);
+            width: 125%;
+            margin: -10%;
             transition: all 100ms ease-out;
         }
     </style>
